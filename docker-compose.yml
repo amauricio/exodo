@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: ./web/
+    environment:
+      - GOPATH=/app
+    command: go run main.go
+    image: web:1.0.0
+    volumes:
+      - ./web:/app
+    ports:
+      - 4050:80
