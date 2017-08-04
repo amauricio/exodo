@@ -1,13 +1,12 @@
 package main
 	
-import . "github.com/amauricio/exodo"
 import (
     "fmt"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Malcon rosquete %s!", r.URL.Path[1:])
+    fmt.Fprintf(w, "Mauricio y Rolly FOREVER %s!", r.URL.Path[1:])
 }
 
 func main() {
