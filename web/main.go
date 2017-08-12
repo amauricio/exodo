@@ -1,6 +1,6 @@
 package main
 	
-import . "github.com/amauricio/exodo"
+import . "github.com/amauricio/exodo/web/app"
 import (
     "fmt"
 	"net/http"

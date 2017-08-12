@@ -1,4 +1,4 @@
-package exodo
+package app
 
 import (
 	"fmt"
