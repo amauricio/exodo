@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 where=$PWD
 if [ "$EUID" -ne 0 ]
