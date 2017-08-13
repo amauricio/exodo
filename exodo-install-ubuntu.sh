@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+where=$PWD
 if [ "$EUID" -ne 0 ]
   then echo "Run as root bitch!!!"
   exit
@@ -27,13 +27,35 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 apt update
 
 ##installing requirements
-apt -y install build-essential libssl-dev  postgresql-9.6 golang-go git
+apt -y install curl build-essential libssl-dev  postgresql-9.6 git
 
 ##cloning repository from google git
-echo "Get golang git from Google"
+echo "Get golang"
+
+#creating exodo folder
 mkdir -p /usr/local/exodo/golang
-git clone https://go.googlesource.com/go /usr/local/exodo/golang
-git --git-dir /usr/local/exodo/golang/.git checkout go1.8.3
-##installing golang
-echo "Installing golang 1.8.3"
-./all.bash
+cd /usr/local/exodo/golang
+
+#download source golang
+curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+
+#unpack golang
+sha256sum go1.8.linux-amd64.tar.gz
+tar xvf go1.8.linux-amd64.tar.gz
+
+##permissions
+sudo chown -R root:root ./go
+
+#moving source golang 
+sudo mv go /usr/local
+
+#environment
+echo "GOPATH=$HOME/work" >> ~/.profile
+echo "PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.profile
+export GOROOT=$HOME/go
+export GOPATH=$HOME/work
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+source ~/.profile
+
+#return main folder
+cd $PWD
