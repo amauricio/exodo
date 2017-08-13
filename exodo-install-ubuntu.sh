@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+
+if [ "$EUID" -ne 0 ]
+  then echo "Run as root bitch!!!"
+  exit
+fi
+
 version=$(lsb_release --release | cut -f2)
 codename=$(lsb_release --codename | cut -f2)
 machine=$(uname -m)
@@ -10,13 +16,8 @@ echo $nodename
 echo 'Instalando exodo...'
 echo $version
 
-if [ "$EUID" -ne 0 ]
-  then echo "Run as root bitch!!!"
-  exit
-fi
-
 ##adding repository
-add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $version-pgdg main"
+add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main"
 
 
 ##downloading key
