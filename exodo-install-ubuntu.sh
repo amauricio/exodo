@@ -18,7 +18,10 @@ echo $version
 
 ##adding repository
 add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main"
+apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
 
+##add key
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 ##downloading key
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -27,7 +30,10 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 apt update
 
 ##installing requirements
-apt -y install curl build-essential libssl-dev  postgresql-9.6 git
+apt -y install curl build-essential libssl-dev  postgresql-9.6 git docker-engine python-pip
+
+##instal docker compose
+pip install docker-compose
 
 ##cloning repository from google git
 echo "Get golang"
