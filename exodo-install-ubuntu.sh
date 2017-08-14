@@ -31,7 +31,7 @@ apt -y install curl  build-essential libssl-dev
 ##add key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-
+apt update
 ##installing requirements
 apt -y install  postgresql-9.6 git docker-ce python-pip
 
