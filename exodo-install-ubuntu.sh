@@ -7,7 +7,6 @@ if [ "$EUID" -ne 0 ]
 fi
 
 version=$(lsb_release --release | cut -f2)
-codename=$(lsb_release --codename | cut -f2)
 machine=$(uname -m)
 nodename=$(uname -n)
 
@@ -17,11 +16,10 @@ echo 'Instalando exodo...'
 echo $version
 
 ##adding repository
-add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main"
+add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ##add key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ##downloading key
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
@@ -42,6 +40,7 @@ mkdir -p /usr/local/exodo/golang
 cd /usr/local/exodo/golang
 
 #download source golang
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
 
 #unpack golang
