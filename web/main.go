@@ -1,21 +1,23 @@
 package main
-	
-<<<<<<< HEAD
-import . "github.com/amauricio/exodo/web/app"
-=======
->>>>>>> 4a40de44e0119bc1c4a45fd0ea043562adf72a54
+
+//exodo application
+//author: mauricio
+
 import (
     "fmt"
-	"net/http"
+	"./app"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	
     fmt.Fprintf(w, "Mauricio y Rolly FOREVER %s!", r.URL.Path[1:])
 }
 
+
 func main() {
+	app.Run()
 	port := 80
 	http.HandleFunc("/dashboard", handler)
-	
+	println( fmt.Sprintf("Starting exodo server on port %d", port))
     http.ListenAndServe(fmt.Sprintf("0.0.0.0:%d",port), nil)
 }
