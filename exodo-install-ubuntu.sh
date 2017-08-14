@@ -15,20 +15,21 @@ echo $nodename
 echo 'Instalando exodo...'
 echo $version
 
+
+##adding repository
+add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+
 ##downloading key
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
 ##update repository
 apt update
-apt install curl  build-essential libssl-dev 
+apt -y install curl  build-essential libssl-dev 
 
 ##add key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-
-##adding repository
-add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 
 ##installing requirements
