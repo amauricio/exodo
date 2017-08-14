@@ -1,5 +1,13 @@
 package app
 
+//exodo application
+//author: mauricio
+
 import (
-	"fmt"
+	"net/http"
 )
+
+
+func Server(){
+	mux  := http.NewServeMux()
+}
