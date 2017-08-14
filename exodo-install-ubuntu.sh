@@ -18,11 +18,10 @@ echo $version
 
 ##adding repository
 add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main"
-apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ##add key
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ##downloading key
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
@@ -30,7 +29,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 apt update
 
 ##installing requirements
-apt -y install curl build-essential libssl-dev  postgresql-9.6 git docker-engine python-pip
+apt -y install curl build-essential libssl-dev  postgresql-9.6 git docker-ce python-pip
 
 ##instal docker compose
 pip install docker-compose
@@ -61,6 +60,8 @@ echo "PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.profile
 export GOROOT=$HOME/go
 export GOPATH=$HOME/work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+service docker start
 
 #return main folder
 cd $PWD
