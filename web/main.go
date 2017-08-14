@@ -10,7 +10,7 @@ import (
 
 func main() {
 	//define host & port
-	port := 8081
+	port := 80
 	host := "0.0.0.0"
 
 	app.Server(port, host)
