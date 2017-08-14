@@ -61,7 +61,6 @@ echo "PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.profile
 export GOROOT=$HOME/go
 export GOPATH=$HOME/work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-source ~/.profile
 
 #return main folder
 cd $PWD
